@@ -8,9 +8,73 @@ public class Main {
     }
 
     void run(){
-        Opdracht1(10);
-        Opdracht2(10);
-        Opdracht3(10);
+        ArrayList<Integer> algo1 = new ArrayList<>();
+        algo1.add(5000);
+        algo1.add(10000);
+        algo1.add(20000);
+        algo1.add(50000);
+        algo1.add(100000);
+        algo1.add(200000);
+        ArrayList<Integer> algo2 = new ArrayList<>();
+        algo2.add(100000);
+        algo2.add(200000);
+        algo2.add(500000);
+        algo2.add(1000000);
+        algo2.add(5000000);
+        algo2.add(10000000);
+        ArrayList<Integer> algo3 = new ArrayList<>();
+        algo3.add(2000000);
+        algo3.add(5000000);
+        algo3.add(10000000);
+        algo3.add(20000000);
+        algo3.add(50000000);
+        algo3.add(100000000);
+
+        System.out.println("\nOpdracht 1:");
+        for (Integer n:algo1){
+            long total = 0;
+            System.out.println("N="+n+"");
+            for (int i = 0; i < 10; i++) {
+                //Skip first and last try
+                if(i!= 0 || i!= 9){
+                    //Add to total
+                    total += Opdracht1(n);
+                }
+            }
+            //Calculate average
+            System.out.println("Gemiddeld: "+(total/8));
+        }
+
+        System.out.println("\nOpdracht 2:");
+        for (Integer n:algo2){
+            long total = 0;
+            System.out.println("N="+n+"");
+            for (int i = 0; i < 10; i++) {
+                //Skip first and last try
+                if(i!= 0 || i!= 9){
+                    //Add to total
+                    total += Opdracht2(n);
+                }
+            }
+            //Calculate average
+            System.out.println("Gemiddeld: "+(total/8));
+        }
+
+        System.out.println("\nOpdracht 3:");
+        for (Integer n:algo3){
+            long total = 0;
+            System.out.println("N="+n+"");
+            for (int i = 0; i < 10; i++) {
+                //Skip first and last try
+                if(i!= 0 || i!= 9){
+                    //Add to total
+                    total += Opdracht3(n);
+                }
+            }
+            //Calculate average
+            System.out.println("Gemiddeld: "+(total/8));
+        }
+
     }
 
     /**
@@ -19,19 +83,30 @@ public class Main {
      * then it will repeat the process until there is a generated number that doesn't exist in the array
      * @param n The given array length
      */
-    void Opdracht1(int n){
+    long Opdracht1(int n){
         ArrayList<Integer> a = new ArrayList<>();
         int number;
+        //Start timer
+        long startTime = System.currentTimeMillis();
         for (int i = 0; i < n-1; i++) {
             number = (int) (Math.random() * ((n)));
             for (int j = 0; j < n - 1; j++) {
-                if (a.get(j) == number) {
+                if(i==0){
+                    a.add(i);
+                }else if (a.get(j) == number) {
                     i--;
                 }else {
                     a.add(i);
                 }
             }
         }
+        //Count the time spent
+        long duration = (System.currentTimeMillis() - startTime);
+        //From milliseconds to seconds
+        //duration = duration / 1000;
+        //Print out the duration of the whole process
+        System.out.println(duration+"milli-seconds");
+        return duration;
     }
 
     /**
@@ -41,12 +116,15 @@ public class Main {
      * same process until the random generated number is unique
      * @param n The given array length
      */
-    void Opdracht2(int n){
+    long Opdracht2(int n){
         ArrayList<Integer> list = new ArrayList<>();
         ArrayList<Boolean> used = new ArrayList<>();
         for(int i = 0; i < n - 1; i++){
             used.add(false);
         }
+        System.out.println("Opdracht 2:");
+        //Start the timer
+        long startTime = System.currentTimeMillis();
         for(int i = 0; i < n - 1 ;i++){
             boolean done = false;
             while(!done) {
@@ -61,9 +139,17 @@ public class Main {
                     done = true;
                 }
             }
-            System.out.print(i);
+            //System.out.print(i);
         }
-        System.out.print("done");
+
+        //Count the time spent
+        long duration = (System.currentTimeMillis() - startTime);
+        //From milliseconds to seconds
+        //duration = duration / 1000;
+        //Print out the duration of the whole process
+        System.out.println(duration+"milli-seconds");
+        return duration;
+
     }
 
     /**
@@ -72,8 +158,10 @@ public class Main {
      * index value and higher than the index value of 0(eg. we add 5, 5 will be swapped with a position between 0 and 5)
      * @param n The given array length
      */
-    void Opdracht3(int n){
+    long Opdracht3(int n){
         ArrayList<Integer> list = new ArrayList<>();
+        //Start the timer
+        long startTime = System.currentTimeMillis();
         for (int i = 0; i < n-1; i++) {
             if(list.size() == 0){
                 list.add(i);
@@ -88,8 +176,13 @@ public class Main {
                 list.set(index2,waarde);
             }
         }
-        for (Integer integer : list){
-            System.out.println(integer);
-        }
+        //Count the time spent
+        long duration = (System.currentTimeMillis() - startTime);
+        //From milliseconds to seconds
+        //duration = duration / 1000;
+        //Print out the duration of the whole process
+        System.out.println(duration+"milli-seconds");
+        return duration;
+
     }
 }
