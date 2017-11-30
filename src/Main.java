@@ -1,5 +1,5 @@
-import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -10,6 +10,13 @@ public class Main {
     }
 
     void run() {
+
+        System.out.println("Checking algorithm1");
+        arrayChecker(algorithm1(15), algorithm1(15));
+        System.out.println("Checking algorithm2");
+        arrayChecker(algorithm2(15), algorithm2(15));
+        System.out.println("Checking algorithm3");
+        //arrayChecker(algorithm3(15), algorithm3(15));
         ArrayList<Integer> algo1 = new ArrayList();
         algo1.add(5000);
         algo1.add(10000);
@@ -40,7 +47,7 @@ public class Main {
                 //Skip first and last try
                 if(i!= 0 || i!= 9){
                     long startTime = System.currentTimeMillis();
-                    Opdracht1(n);
+                    algorithm1(n);
                     //Add to total
                     long duration = (System.currentTimeMillis() - startTime);
                     total += duration;
@@ -60,7 +67,7 @@ public class Main {
                 //Skip first and last try
                 if(i!= 0 || i!= 9){
                     long startTime = System.currentTimeMillis();
-                    Opdracht2(n);
+                    algorithm2(n);
                     //Add to total
                     long duration = (System.currentTimeMillis() - startTime);
                     total += duration;
@@ -81,14 +88,14 @@ public class Main {
                 if(i!= 0 || i!= 9){
                     long startTime = System.currentTimeMillis();
                     //Add to total
-                    total += Opdracht3(n);
+                    total += algorithm3(n);
 
                 }
             }
             //Calculate average
             System.out.println("Gemiddeld: "+(total/8) + "milliseconden");
         }
-        Opdracht3(10);
+        algorithm3(10);
     }
 
     /**
@@ -98,7 +105,7 @@ public class Main {
      *
      * @param n The given array length
      */
-    int[] Opdracht1(int n) {
+    int[] algorithm1(int n) {
         int[] a = new int[n];
         int number;
         boolean zeroUsed = false;
@@ -137,7 +144,7 @@ public class Main {
      *
      * @param n The given array length
      */
-    int[] Opdracht2(int n) {
+    int[] algorithm2(int n) {
         int[] list = new int[n];
         boolean[] used = new boolean[n];
         //Start the timer
@@ -153,13 +160,6 @@ public class Main {
                 }
             }
         }
-
-
-
-        //Count the time spent
-        long duration = (System.currentTimeMillis() - startTime);
-        //Print out the duration of the whole process
-        System.out.println(duration + " milliseconden");
         return list;
 
     }
@@ -171,7 +171,7 @@ public class Main {
      *
      * @param n The given array length
      */
-    long Opdracht3(int n) {
+    long algorithm3(int n) {
 
         ArrayList<Integer> list = new ArrayList();
         //Start the timer
@@ -199,5 +199,43 @@ public class Main {
         System.out.println(duration+"milliseconden");
         return duration;
     }
+
+    private boolean arrayChecker(int[] list, int[] list2){
+
+        boolean same = true;
+        //Check if both arrays are the same
+        for(int i =0; i < list.length; i++){
+            if(list[i] != list2[i]){
+                same = false;
+                break;
+            }
+        }
+        if(same){
+            System.out.println("Bad algorithm. Both arrays are the same.");
+            return false;
+        }
+        //Check if the arrays are sorted from 0 to n - 1
+        int passed = 0;
+        for(int i =0; i < list.length; i++){
+           if(i != list[i]){
+               passed++;
+               break;
+           }
+        }
+        for(int i =0; i < list2.length; i++){
+            if(i != list2[i]){
+                passed++;
+                break;
+            }
+        }
+        if(passed != 2){
+            System.out.println("Bad algorithm. array is sorted from 0 to n - 1");
+            return false;
+        }
+        System.out.println("Algorithm succeeded. list1:" + Arrays.toString(list) + " list2:" + Arrays.toString(list2));
+        return true;
+    }
+
+
 
 }
