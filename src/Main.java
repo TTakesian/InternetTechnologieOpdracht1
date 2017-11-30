@@ -10,14 +10,14 @@ public class Main {
     }
 
     void run() {
-        /*
+
         System.out.println("Checking algorithm1");
         arrayChecker(algorithm1(15), algorithm1(15));
         System.out.println("Checking algorithm2");
         arrayChecker(algorithm2(15), algorithm2(15));
         System.out.println("Checking algorithm3");
         arrayChecker(algorithm3(15), algorithm3(15));
-        */
+
         ArrayList<Integer> algo1 = new ArrayList();
         algo1.add(5000);
         algo1.add(10000);
@@ -104,11 +104,10 @@ public class Main {
      *
      * @param n The given array length
      */
-    int[] algorithm1(int n) {
+    private int[] algorithm1(int n) {
         int[] a = new int[n];
         int number;
         boolean zeroUsed = false;
-        //Start timer
         for (int i = 0; i < a.length; i++) {
             number = (int) (Math.random() * ((n)));
             boolean done = false;
@@ -143,7 +142,7 @@ public class Main {
      *
      * @param n The given array length
      */
-    int[] algorithm2(int n) {
+   private int[] algorithm2(int n) {
         int[] list = new int[n];
         boolean[] used = new boolean[n];
         for (int i = 0; i < n; i++) {
@@ -168,18 +167,17 @@ public class Main {
      *
      * @param n The given array length
      */
-    int[] algorithm3(int n) {
+   private int[] algorithm3(int n) {
         int[] list = new int[n];
         for (int i = 0; i < list.length; i++) {
             if(i > 0){
                 list[i] = i;
-                int fag = i - 1;
-                int randomIndex = (int) (Math.random() * ((fag)));
-                int index2 = i;
+                int max = i - 1;
+                int randomIndex = (int) (Math.random() * ((max)));
                 int waarde = list[randomIndex];
                 int waarde2 = list[i];
                 list[randomIndex] = waarde2;
-                list[index2] = waarde;
+                list[i] = waarde;
             }
         }
 
