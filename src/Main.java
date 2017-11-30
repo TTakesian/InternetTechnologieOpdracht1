@@ -10,13 +10,14 @@ public class Main {
     }
 
     void run() {
-
+        /*
         System.out.println("Checking algorithm1");
         arrayChecker(algorithm1(15), algorithm1(15));
         System.out.println("Checking algorithm2");
         arrayChecker(algorithm2(15), algorithm2(15));
         System.out.println("Checking algorithm3");
-        //arrayChecker(algorithm3(15), algorithm3(15));
+        arrayChecker(algorithm3(15), algorithm3(15));
+        */
         ArrayList<Integer> algo1 = new ArrayList();
         algo1.add(5000);
         algo1.add(10000);
@@ -44,16 +45,16 @@ public class Main {
             long total = 0;
             System.out.println("N="+n+"");
             for (int i = 0; i < 10; i++) {
-                //Skip first and last try
-                if(i!= 0 || i!= 9){
-                    long startTime = System.currentTimeMillis();
-                    algorithm1(n);
-                    //Add to total
-                    long duration = (System.currentTimeMillis() - startTime);
+                long startTime = System.currentTimeMillis();
+                algorithm1(n);
+                //Add to total
+                long duration = (System.currentTimeMillis() - startTime);
+                if(i!= 0 || i!= 9) {
                     total += duration;
-                    //Print out the duration of the whole process
-                    System.out.println(duration + " milliseconden");
                 }
+                //Print out the duration of the whole process
+                System.out.println(duration + " milliseconden");
+
             }
             //Calculate average
             System.out.println("Gemiddeld: "+(total/8) + " milliseconden");
@@ -64,16 +65,15 @@ public class Main {
             long total = 0;
             System.out.println("N="+n+"");
             for (int i = 0; i < 10; i++) {
-                //Skip first and last try
-                if(i!= 0 || i!= 9){
-                    long startTime = System.currentTimeMillis();
-                    algorithm2(n);
-                    //Add to total
-                    long duration = (System.currentTimeMillis() - startTime);
+                long startTime = System.currentTimeMillis();
+                algorithm2(n);
+                //Add to total
+                long duration = (System.currentTimeMillis() - startTime);
+                if(i!= 0 || i!= 9) {
                     total += duration;
-                    //Print out the duration of the whole process
-                    System.out.println(duration + " milliseconden");
                 }
+                //Print out the duration of the whole process
+                System.out.println(duration + " milliseconden");
             }
             //Calculate average
             System.out.println("Gemiddeld: "+(total/8) + " milliseconden");
@@ -84,18 +84,17 @@ public class Main {
             long total = 0;
             System.out.println("N="+n+"");
             for (int i = 0; i < 10; i++) {
-                //Skip first and last try
-                if(i!= 0 || i!= 9){
-                    long startTime = System.currentTimeMillis();
-                    //Add to total
-                    total += algorithm3(n);
-
+                long startTime = System.currentTimeMillis();
+                algorithm3(n);
+                long duration = (System.currentTimeMillis() - startTime);
+                if(i!= 0 || i!= 9) {
+                    total += duration;
                 }
+                System.out.println(duration + " milliseconden");
             }
             //Calculate average
             System.out.println("Gemiddeld: "+(total/8) + "milliseconden");
         }
-        algorithm3(10);
     }
 
     /**
@@ -147,8 +146,6 @@ public class Main {
     int[] algorithm2(int n) {
         int[] list = new int[n];
         boolean[] used = new boolean[n];
-        //Start the timer
-        long startTime = System.currentTimeMillis();
         for (int i = 0; i < n; i++) {
             boolean done = false;
             while (!done) {
@@ -171,33 +168,22 @@ public class Main {
      *
      * @param n The given array length
      */
-    long algorithm3(int n) {
-
-        ArrayList<Integer> list = new ArrayList();
-        //Start the timer
-        long startTime = System.currentTimeMillis();
-        for (int i = 0; i < n; i++) {
-            if(i == 0){
-                list.add(i);
-            }else {
-                list.add(i);
+    int[] algorithm3(int n) {
+        int[] list = new int[n];
+        for (int i = 0; i < list.length; i++) {
+            if(i > 0){
+                list[i] = i;
                 int fag = i - 1;
                 int randomIndex = (int) (Math.random() * ((fag)));
                 int index2 = i;
-                int waarde = list.get(randomIndex);
-                int waarde2 = list.get(i);
-                list.set(randomIndex,waarde2);
-                list.set(index2,waarde);
+                int waarde = list[randomIndex];
+                int waarde2 = list[i];
+                list[randomIndex] = waarde2;
+                list[index2] = waarde;
             }
         }
-        System.out.println(list);
-        //Count the time spent
-        long duration = (System.currentTimeMillis() - startTime);
-        //From milliseconds to seconds
-        //duration = duration / 1000;
-        //Print out the duration of the whole process
-        System.out.println(duration+"milliseconden");
-        return duration;
+
+        return list;
     }
 
     private void arrayChecker(int[] list, int[] list2){
