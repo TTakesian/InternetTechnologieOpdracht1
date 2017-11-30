@@ -200,7 +200,7 @@ public class Main {
         return duration;
     }
 
-    private boolean arrayChecker(int[] list, int[] list2){
+    private void arrayChecker(int[] list, int[] list2){
 
         boolean same = true;
         //Check if both arrays are the same
@@ -212,7 +212,6 @@ public class Main {
         }
         if(same){
             System.out.println("Bad algorithm. Both arrays are the same.");
-            return false;
         }
         //Check if the arrays are sorted from 0 to n - 1
         int passed = 0;
@@ -230,10 +229,12 @@ public class Main {
         }
         if(passed != 2){
             System.out.println("Bad algorithm. array is sorted from 0 to n - 1");
-            return false;
         }
-        System.out.println("Algorithm succeeded. list1:" + Arrays.toString(list) + " list2:" + Arrays.toString(list2));
-        return true;
+        //Tell the user the Algorithm worked
+        if(passed == 2 && !same) {
+            System.out.println("Algorithm succeeded. list1:" + Arrays.toString(list) + " list2:" + Arrays.toString(list2));
+        }
+
     }
 
 
