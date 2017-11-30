@@ -1,3 +1,4 @@
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -29,7 +30,7 @@ public class Main {
         algo3.add(20000000);
         algo3.add(50000000);
         algo3.add(100000000);
-
+    /*
         System.out.println("\nOpdracht 1:");
         for (Integer n:algo1){
             long total = 0;
@@ -42,7 +43,7 @@ public class Main {
                 }
             }
             //Calculate average
-            System.out.println("Gemiddeld: "+(total/8));
+            System.out.println("Gemiddeld: "+(total/8) + " milliseconden");
         }
 
         System.out.println("\nOpdracht 2:");
@@ -57,7 +58,7 @@ public class Main {
                 }
             }
             //Calculate average
-            System.out.println("Gemiddeld: "+(total/8));
+            System.out.println("Gemiddeld: "+(total/8) + " milliseconden");
         }
 
         System.out.println("\nOpdracht 3:");
@@ -72,9 +73,10 @@ public class Main {
                 }
             }
             //Calculate average
-            System.out.println("Gemiddeld: "+(total/8));
+            System.out.println("Gemiddeld: "+(total/8) + "milliseconden");
         }
-
+*/
+    Opdracht1(10);
     }
 
     /**
@@ -84,70 +86,70 @@ public class Main {
      * @param n The given array length
      */
     long Opdracht1(int n){
-        ArrayList<Integer> a = new ArrayList();
+        int[] a = new int[n];
         int number;
         //Start timer
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < n-1; i++) {
+        for (int i = 0; i < a.length; i++) {
             number = (int) (Math.random() * ((n)));
-            for (int j = 0; j < n - 1; j++) {
+            for (int j = 0; j < a.length; j++) {
                 if(i==0){
-                    a.add(i);
-                }else if (a.get(j) == number) {
-                    i--;
+                    a[i] = number;
+                    break;
+                }else if (a[j] == number) {
+                    if(i!=0){
+                        i--;
+                    }
                 }else {
-                    a.add(i);
+                    a[i] = number;
+                    break;
                 }
             }
         }
+
+        for (int i = 0; i < a.length; i++) {
+            System.out.println(a[i]);
+        }
         //Count the time spent
         long duration = (System.currentTimeMillis() - startTime);
-        //From milliseconds to seconds
-        //duration = duration / 1000;
         //Print out the duration of the whole process
-        System.out.println(duration+" milliseconds");
+        System.out.println(duration+" milliseconden");
         return duration;
     }
 
     /**
      * This function will create an array filled with random numbers, each number will be unique and
-     * there are no doubles. There is an extra array that is used to check if the random generated number
+     * there are no dupplicates. There is an extra array that is used to check if the random generated number
      * already exists in the array, if so then it will try to generate a random number again and repeat the
      * same process until the random generated number is unique
      * @param n The given array length
      */
     long Opdracht2(int n){
-        ArrayList<Integer> list = new ArrayList();
-        ArrayList<Boolean> used = new ArrayList();
-        for(int i = 0; i < n - 1; i++){
-            used.add(false);
-        }
-
+        int[] list = new int[n];
+        boolean[] used = new boolean[n];
         //Start the timer
         long startTime = System.currentTimeMillis();
-        for(int i = 0; i < n - 1 ;i++){
+        for(int i = 0; i < n;i++){
             boolean done = false;
             while(!done) {
                 int number = (int) (Math.random() * ((n)));
-                int index = number - 1;
-                if(number ==0){
-                    index = 0;
-                }
-                if(!used.get(index)){
-                    used.set(index, true);
-                    list.add(number);
+
+                if(!used[number]){
+                    used[number] = true;
+                    list[i] = number;
                     done = true;
                 }
             }
-            //System.out.print(i);
+        }
+
+        for (int i = 0; i < list.length; i++) {
+            System.out.println(list[i]);
         }
 
         //Count the time spent
         long duration = (System.currentTimeMillis() - startTime);
-        //From milliseconds to seconds
-        //duration = duration / 1000;
         //Print out the duration of the whole process
-        System.out.println(duration+" milliseconds");
+        System.out.println(duration+" milliseconden");
         return duration;
 
     }
@@ -159,11 +161,11 @@ public class Main {
      * @param n The given array length
      */
     long Opdracht3(int n){
-        ArrayList<Integer> list = new ArrayList();
+        int[] list = new int[n];
         //Start the timer
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < n-1; i++) {
-            if(list.size() == 0){
+        for (int i = 0; i < list.length; i++) {
+            if(list[i] == 0){
                 list.add(i);
             }else {
                 list.add(i);
@@ -181,7 +183,7 @@ public class Main {
         //From milliseconds to seconds
         //duration = duration / 1000;
         //Print out the duration of the whole process
-        System.out.println(duration+"milli-seconds");
+        System.out.println(duration+"milliseconden");
         return duration;
 
     }
