@@ -31,7 +31,7 @@ public class Main {
         algo3.add(20000000);
         algo3.add(50000000);
         algo3.add(100000000);
-    /*
+
         System.out.println("\nOpdracht 1:");
         for (Integer n:algo1){
             long total = 0;
@@ -39,8 +39,13 @@ public class Main {
             for (int i = 0; i < 10; i++) {
                 //Skip first and last try
                 if(i!= 0 || i!= 9){
+                    long startTime = System.currentTimeMillis();
+                    Opdracht1(n);
                     //Add to total
-                    total += Opdracht1(n);
+                    long duration = (System.currentTimeMillis() - startTime);
+                    total += duration;
+                    //Print out the duration of the whole process
+                    System.out.println(duration + " milliseconden");
                 }
             }
             //Calculate average
@@ -54,8 +59,13 @@ public class Main {
             for (int i = 0; i < 10; i++) {
                 //Skip first and last try
                 if(i!= 0 || i!= 9){
+                    long startTime = System.currentTimeMillis();
+                    Opdracht2(n);
                     //Add to total
-                    total += Opdracht2(n);
+                    long duration = (System.currentTimeMillis() - startTime);
+                    total += duration;
+                    //Print out the duration of the whole process
+                    System.out.println(duration + " milliseconden");
                 }
             }
             //Calculate average
@@ -69,15 +79,16 @@ public class Main {
             for (int i = 0; i < 10; i++) {
                 //Skip first and last try
                 if(i!= 0 || i!= 9){
+                    long startTime = System.currentTimeMillis();
                     //Add to total
                     total += Opdracht3(n);
+
                 }
             }
             //Calculate average
             System.out.println("Gemiddeld: "+(total/8) + "milliseconden");
         }
-*/
-        Opdracht1(10);
+        Opdracht3(10);
     }
 
     /**
@@ -87,16 +98,14 @@ public class Main {
      *
      * @param n The given array length
      */
-    long Opdracht1(int n) {
+    int[] Opdracht1(int n) {
         int[] a = new int[n];
         int number;
         boolean zeroUsed = false;
         //Start timer
-        long startTime = System.currentTimeMillis();
         for (int i = 0; i < a.length; i++) {
             number = (int) (Math.random() * ((n)));
             boolean done = false;
-
             while (!done) {
                 for (int j = 0; j < a.length; j++) {
                     if (a[j] == number) {
@@ -117,15 +126,7 @@ public class Main {
             }
         }
 
-
-        for (int i = 0; i < a.length; i++) {
-            System.out.println(a[i]);
-        }
-        //Count the time spent
-        long duration = (System.currentTimeMillis() - startTime);
-        //Print out the duration of the whole process
-        System.out.println(duration + " milliseconden");
-        return duration;
+        return a;
     }
 
     /**
@@ -136,7 +137,7 @@ public class Main {
      *
      * @param n The given array length
      */
-    long Opdracht2(int n) {
+    int[] Opdracht2(int n) {
         int[] list = new int[n];
         boolean[] used = new boolean[n];
         //Start the timer
@@ -145,7 +146,6 @@ public class Main {
             boolean done = false;
             while (!done) {
                 int number = (int) (Math.random() * ((n)));
-
                 if (!used[number]) {
                     used[number] = true;
                     list[i] = number;
@@ -154,15 +154,13 @@ public class Main {
             }
         }
 
-        for (int i = 0; i < list.length; i++) {
-            System.out.println(list[i]);
-        }
+
 
         //Count the time spent
         long duration = (System.currentTimeMillis() - startTime);
         //Print out the duration of the whole process
         System.out.println(duration + " milliseconden");
-        return duration;
+        return list;
 
     }
 
@@ -174,12 +172,12 @@ public class Main {
      * @param n The given array length
      */
     long Opdracht3(int n) {
-        /*
-        int[] list = new int[n];
+
+        ArrayList<Integer> list = new ArrayList();
         //Start the timer
         long startTime = System.currentTimeMillis();
-        for (int i = 0; i < list.length; i++) {
-            if(list[i] == 0){
+        for (int i = 0; i < n; i++) {
+            if(i == 0){
                 list.add(i);
             }else {
                 list.add(i);
@@ -192,6 +190,7 @@ public class Main {
                 list.set(index2,waarde);
             }
         }
+        System.out.println(list);
         //Count the time spent
         long duration = (System.currentTimeMillis() - startTime);
         //From milliseconds to seconds
@@ -199,8 +198,6 @@ public class Main {
         //Print out the duration of the whole process
         System.out.println(duration+"milliseconden");
         return duration;
-*/
-        return 2;
     }
 
 }
