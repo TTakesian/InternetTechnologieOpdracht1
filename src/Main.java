@@ -9,36 +9,10 @@ public class Main {
         new Main().run();
     }
 
-    void run() {
-
-        System.out.println("Checking algorithm1");
-        arrayChecker(algorithm1(15), algorithm1(15));
-        System.out.println("Checking algorithm2");
-        arrayChecker(algorithm2(15), algorithm2(15));
-        System.out.println("Checking algorithm3");
-        arrayChecker(algorithm3(15), algorithm3(15));
-
-        ArrayList<Integer> algo1 = new ArrayList();
-        algo1.add(5000);
-        algo1.add(10000);
-        algo1.add(20000);
-        algo1.add(50000);
-        algo1.add(100000);
-        algo1.add(200000);
-        ArrayList<Integer> algo2 = new ArrayList();
-        algo2.add(100000);
-        algo2.add(200000);
-        algo2.add(500000);
-        algo2.add(1000000);
-        algo2.add(5000000);
-        algo2.add(10000000);
-        ArrayList<Integer> algo3 = new ArrayList();
-        algo3.add(2000000);
-        algo3.add(5000000);
-        algo3.add(10000000);
-        algo3.add(20000000);
-        algo3.add(50000000);
-        algo3.add(100000000);
+    private void run() {
+        int[]algo1 = new int[] {5000,10000,20000,50000,100000,200000};
+        int[]algo2 = new int[] {100000,200000,500000,1000000,5000000,10000000};
+        int[]algo3 = new int[] {2000000,5000000,10000000,20000000,50000000,100000000};
 
         System.out.println("\nOpdracht 1:");
         for (Integer n:algo1){
@@ -104,7 +78,7 @@ public class Main {
      *
      * @param n The given array length
      */
-    private int[] algorithm1(int n) {
+    public static int[] algorithm1(int n) {
         int[] a = new int[n];
         int number;
         boolean zeroUsed = false;
@@ -116,12 +90,14 @@ public class Main {
                     if (a[j] == number) {
                         if (number == 0 && !zeroUsed) {
                             done = true;
+                            //0 can only be used once
                             zeroUsed = true;
                             a[i] = number;
                             j = a.length - 1;
-                        } else {
-                            j = 0;
+                        }
+                        else{
                             number = (int) (Math.random() * ((n)));
+                            j = -1;
                         }
                     } else if (j == a.length - 1) {
                         a[i] = number;
@@ -142,7 +118,7 @@ public class Main {
      *
      * @param n The given array length
      */
-   private int[] algorithm2(int n) {
+   public static int[] algorithm2(int n) {
         int[] list = new int[n];
         boolean[] used = new boolean[n];
         for (int i = 0; i < n; i++) {
@@ -167,7 +143,7 @@ public class Main {
      *
      * @param n The given array length
      */
-   private int[] algorithm3(int n) {
+   public static int[] algorithm3(int n) {
         int[] list = new int[n];
         for (int i = 0; i < list.length; i++) {
             if(i > 0){
@@ -184,42 +160,7 @@ public class Main {
         return list;
     }
 
-    private void arrayChecker(int[] list, int[] list2){
 
-        boolean same = true;
-        //Check if both arrays are the same
-        for(int i =0; i < list.length; i++){
-            if(list[i] != list2[i]){
-                same = false;
-                break;
-            }
-        }
-        if(same){
-            System.out.println("Bad algorithm. Both arrays are the same.");
-        }
-        //Check if the arrays are sorted from 0 to n - 1
-        int passed = 0;
-        for(int i =0; i < list.length; i++){
-           if(i != list[i]){
-               passed++;
-               break;
-           }
-        }
-        for(int i =0; i < list2.length; i++){
-            if(i != list2[i]){
-                passed++;
-                break;
-            }
-        }
-        if(passed != 2){
-            System.out.println("Bad algorithm. array is sorted from 0 to n - 1");
-        }
-        //Tell the user the Algorithm worked
-        if(passed == 2 && !same) {
-            System.out.println("Algorithm succeeded. list1:" + Arrays.toString(list) + " list2:" + Arrays.toString(list2));
-        }
-
-    }
 
 
 
