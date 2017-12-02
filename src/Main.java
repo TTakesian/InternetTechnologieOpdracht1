@@ -128,11 +128,11 @@ public class Main {
                 total += duration;
             }
             //Print out the duration of the whole process
-            System.out.println(duration + " milliseconden");
+            System.out.println(duration + " milliseconds");
 
         }
         //Calculate average
-        System.out.println("Gemiddeld: " + (total / 8) + " milliseconden");
+        System.out.println("Average: " + (total / 8) + " milliseconds");
 
 
     }
