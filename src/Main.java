@@ -107,8 +107,8 @@ public class Main {
 
     /**
      * Looks for the average length with of given algorithm with given array size
-     * @param choice
-     * @param n
+     * @param choice the algorithm that will create the array
+     * @param n the array size
      */
     private void checkLength(int choice, int n) {
         long total = 0;

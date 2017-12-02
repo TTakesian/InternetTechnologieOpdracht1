@@ -21,8 +21,8 @@
       <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="867">
-              <caret line="51" column="50" lean-forward="false" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
+            <state relative-caret-position="17">
+              <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
               <folding>
                 <element signature="e#86#87#0" expanded="true" />
                 <element signature="e#118#119#0" expanded="true" />
@@ -383,7 +383,7 @@
       <workItem from="1512052783265" duration="1571000" />
       <workItem from="1512142321089" duration="6011000" />
       <workItem from="1512164474503" duration="296000" />
-      <workItem from="1512209059902" duration="3294000" />
+      <workItem from="1512209059902" duration="3380000" />
     </task>
     <task id="LOCAL-00001" summary="dwwd">
       <created>1511429343237</created>
@@ -420,7 +420,14 @@
       <option name="project" value="LOCAL" />
       <updated>1512164619184</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="menu toegevoegt">
+      <created>1512221093292</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1512221093292</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -456,7 +463,7 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="30613000" />
+    <option name="totallyTimeSpent" value="30699000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -500,7 +507,8 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dwwd" />
-    <option name="LAST_COMMIT_MESSAGE" value="dwwd" />
+    <MESSAGE value="menu toegevoegt" />
+    <option name="LAST_COMMIT_MESSAGE" value="menu toegevoegt" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -733,8 +741,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="867">
-          <caret line="51" column="50" lean-forward="false" selection-start-line="51" selection-start-column="50" selection-end-line="51" selection-end-column="50" />
+        <state relative-caret-position="17">
+          <caret line="1" column="0" lean-forward="true" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
           <folding>
             <element signature="e#86#87#0" expanded="true" />
             <element signature="e#118#119#0" expanded="true" />
