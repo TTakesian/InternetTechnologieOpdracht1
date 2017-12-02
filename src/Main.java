@@ -1,113 +1,140 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Random;
+import java.util.*;
 
 public class Main {
-    private Random random;
+
 
     public static void main(String[] args) {
         new Main().run();
     }
 
     private void run() {
-        int[]algo1 = new int[] {5000,10000,20000,50000,100000,200000};
-        int[]algo2 = new int[] {100000,200000,500000,1000000,5000000,10000000};
-        int[]algo3 = new int[] {2000000,5000000,10000000,20000000,50000000,100000000};
-
-        System.out.println("\nOpdracht 1:");
-        for (Integer n:algo1){
-            long total = 0;
-            System.out.println("N="+n+"");
-            for (int i = 0; i < 10; i++) {
-                long startTime = System.currentTimeMillis();
-                algorithm1(n);
-                //Add to total
-                long duration = (System.currentTimeMillis() - startTime);
-                if(i!= 0 || i!= 9) {
-                    total += duration;
+        Scanner scanner = new Scanner(System.in);
+        boolean exit = false;
+        while (!exit) {
+            int n = 0;
+            System.out.println("Enter the array size");
+            boolean correctN = false;
+            //Choose the array size
+            while (!correctN) {
+                try {
+                    n = scanner.nextInt();
+                    correctN = true;
+                } catch (InputMismatchException ex) {
+                    System.out.println("Please enter a number");
+                    scanner = new Scanner(System.in);
                 }
-                //Print out the duration of the whole process
-                System.out.println(duration + " milliseconden");
-
             }
-            //Calculate average
-            System.out.println("Gemiddeld: "+(total/8) + " milliseconden");
-        }
-
-        System.out.println("\nOpdracht 2:");
-        for (Integer n:algo2){
-            long total = 0;
-            System.out.println("N="+n+"");
-            for (int i = 0; i < 10; i++) {
-                long startTime = System.currentTimeMillis();
-                algorithm2(n);
-                //Add to total
-                long duration = (System.currentTimeMillis() - startTime);
-                if(i!= 0 || i!= 9) {
-                    total += duration;
+            int algorithmChoice = 0;
+            boolean choice = false;
+            //Choose the algorithm
+            while (!choice) {
+                try {
+                    System.out.println("Please choose which algorithm you want to use" + "\n"
+                            + "1. algorithm1" + "\n"
+                            + "2. algorithm2" + "\n"
+                            + "3. algorithm3");
+                    algorithmChoice = scanner.nextInt();
+                    if (algorithmChoice > 0 && algorithmChoice < 4) {
+                        choice = true;
+                    } else {
+                        System.out.println("Please choose a correct algorithm");
+                    }
+                } catch (InputMismatchException ex) {
+                    scanner = new Scanner(System.in);
+                    System.out.println("Please enter a number");
                 }
-                //Print out the duration of the whole process
-                System.out.println(duration + " milliseconden");
             }
-            //Calculate average
-            System.out.println("Gemiddeld: "+(total/8) + " milliseconden");
-        }
-
-        System.out.println("\nOpdracht 3:");
-        for (Integer n:algo3){
-            long total = 0;
-            System.out.println("N="+n+"");
-            for (int i = 0; i < 10; i++) {
-                long startTime = System.currentTimeMillis();
-                algorithm3(n);
-                long duration = (System.currentTimeMillis() - startTime);
-                if(i!= 0 || i!= 9) {
-                    total += duration;
+            //Check the length
+            checkLength(algorithmChoice, n);
+            System.out.println("Algorithm done. If you want to continue enter: 1. If you want to stop enter: 0");
+            int goOn = -1;
+            boolean choiceMade = false;
+            //Decice if the user wants to continue
+            while (!choiceMade) {
+                try {
+                    goOn = scanner.nextInt();
+                    choiceMade = true;
+                } catch (InputMismatchException ex) {
+                    scanner = new Scanner(System.in);
+                    System.out.println("Please enter a number");
                 }
-                System.out.println(duration + " milliseconden");
             }
-            //Calculate average
-            System.out.println("Gemiddeld: "+(total/8) + "milliseconden");
+            if (goOn == 0) {
+                exit = true;
+            }
         }
     }
 
-    /**
-     * This function will create an array filled with random numbers, each number is unique and there are no doubles.
-     * When generating a random number, the function loops through the array to check if that number already exist, if so
-     * then it will repeat the process until there is a generated number that doesn't exist in the array
-     *
-     * @param n The given array length
-     */
-    public static int[] algorithm1(int n) {
-        int[] a = new int[n];
-        int number;
-        boolean zeroUsed = false;
-        for (int i = 0; i < a.length; i++) {
-            number = (int) (Math.random() * ((n)));
-            boolean done = false;
-            while (!done) {
-                for (int j = 0; j < a.length; j++) {
-                    if (a[j] == number) {
-                        if (number == 0 && !zeroUsed) {
-                            done = true;
-                            //0 can only be used once
-                            zeroUsed = true;
+
+
+        /**
+         * This function will create an array filled with random numbers, each number is unique and there are no doubles.
+         * When generating a random number, the function loops through the array to check if that number already exist, if so
+         * then it will repeat the process until there is a generated number that doesn't exist in the array
+         *
+         * @param n The given array length
+         */
+        public static int[] algorithm1 ( int n){
+            int[] a = new int[n];
+            int number;
+            boolean zeroUsed = false;
+            for (int i = 0; i < a.length; i++) {
+                number = (int) (Math.random() * ((n)));
+                boolean done = false;
+                while (!done) {
+                    for (int j = 0; j < a.length; j++) {
+                        if (a[j] == number) {
+                            if (number == 0 && !zeroUsed) {
+                                done = true;
+                                //0 can only be used once
+                                zeroUsed = true;
+                                a[i] = number;
+                                j = a.length - 1;
+                            } else {
+                                number = (int) (Math.random() * ((n)));
+                                j = -1;
+                            }
+                        } else if (j == a.length - 1) {
                             a[i] = number;
-                            j = a.length - 1;
+                            done = true;
                         }
-                        else{
-                            number = (int) (Math.random() * ((n)));
-                            j = -1;
-                        }
-                    } else if (j == a.length - 1) {
-                        a[i] = number;
-                        done = true;
                     }
                 }
             }
+
+            return a;
         }
 
-        return a;
+    /**
+     * Looks for the average length with of given algorithm with given array size
+     * @param choice
+     * @param n
+     */
+    private void checkLength(int choice, int n) {
+        long total = 0;
+        System.out.println("N=" + n + "");
+        for (int i = 0; i < 10; i++) {
+            long startTime = System.currentTimeMillis();
+            if (choice == 1) {
+                algorithm1(n);
+            } else if (choice == 2) {
+                algorithm2(n);
+            } else if (choice == 3) {
+                algorithm3(n);
+            }
+            //Add to total
+            long duration = (System.currentTimeMillis() - startTime);
+            if (i != 0 || i != 9) {
+                total += duration;
+            }
+            //Print out the duration of the whole process
+            System.out.println(duration + " milliseconden");
+
+        }
+        //Calculate average
+        System.out.println("Gemiddeld: " + (total / 8) + " milliseconden");
+
+
     }
 
     /**
@@ -118,7 +145,7 @@ public class Main {
      *
      * @param n The given array length
      */
-   public static int[] algorithm2(int n) {
+    public static int[] algorithm2(int n) {
         int[] list = new int[n];
         boolean[] used = new boolean[n];
         for (int i = 0; i < n; i++) {
@@ -143,10 +170,10 @@ public class Main {
      *
      * @param n The given array length
      */
-   public static int[] algorithm3(int n) {
+    public static int[] algorithm3(int n) {
         int[] list = new int[n];
         for (int i = 0; i < list.length; i++) {
-            if(i > 0){
+            if (i > 0) {
                 list[i] = i;
                 int max = i - 1;
                 int randomIndex = (int) (Math.random() * ((max)));
@@ -159,9 +186,6 @@ public class Main {
 
         return list;
     }
-
-
-
 
 
 }
