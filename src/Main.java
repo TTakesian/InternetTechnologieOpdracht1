@@ -49,7 +49,7 @@ public class Main {
             System.out.println("Algorithm done. If you want to continue enter: 1. If you want to stop enter: 0");
             int goOn = -1;
             boolean choiceMade = false;
-            //Decice if the user wants to continue
+            //Decide if the user wants to continue
             while (!choiceMade) {
                 try {
                     goOn = scanner.nextInt();
@@ -124,7 +124,7 @@ public class Main {
             }
             //Add to total
             long duration = (System.currentTimeMillis() - startTime);
-            if (i != 0 || i != 9) {
+            if (i != 0 && i != 9) {
                 total += duration;
             }
             //Print out the duration of the whole process
